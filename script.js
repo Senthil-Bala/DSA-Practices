@@ -4233,7 +4233,7 @@
 //                 string+=' '
 //             }
 //         }
-       
+
 //         string+='\n'
 //     }
 //     return string;
@@ -4246,7 +4246,6 @@
 //   *****
 //  *******
 // *********
-
 
 // function pyramid(n){
 //     let string='';
@@ -4322,7 +4321,6 @@
 // }
 // console.log(hollowPyramid(5));
 
-
 // ROMAN TO INTEGER
 
 // function romanToInteger(roman){
@@ -4371,8 +4369,6 @@
 // 207
 // Companies
 // Given an array of intervals intervals where intervals[i] = [starti, endi], return the minimum number of intervals you need to remove to make the rest of the intervals non-overlapping.
-
- 
 
 // Example 1:
 
@@ -4424,8 +4420,6 @@
 
 // Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
 
- 
-
 // Example 1:
 
 // Input: n = 2
@@ -4441,7 +4435,6 @@
 // 1. 1 step + 1 step + 1 step
 // 2. 1 step + 2 steps
 // 3. 2 steps + 1 step
-
 
 // function climbingStairs(n){
 //     let stairs=new Array(n+1).fill(0);
@@ -4466,8 +4459,6 @@
 
 // Return intervals after the insertion.
 
- 
-
 // Example 1:
 
 // Input: intervals = [[1,3],[6,9]], newInterval = [2,5]
@@ -4477,7 +4468,6 @@
 // Input: intervals = [[1,2],[3,5],[6,7],[8,10],[12,16]], newInterval = [4,8]
 // Output: [[1,2],[3,10],[12,16]]
 // Explanation: Because the new interval [4,8] overlaps with [3,5],[6,7],[8,10].
- 
 
 // Constraints:
 
@@ -4493,7 +4483,7 @@
 
 //     let i=0;
 //     let result=[];
-   
+
 // check out non overlapping once and push infront of emptyarray
 
 //     while(i<intervals.length && intervals[i][1]<newIntervals[0]){
@@ -4501,7 +4491,7 @@
 //         i++
 //     }
 
-// checkut overlapping one and insert it 
+// checkut overlapping one and insert it
 
 //     while(i<intervals.length && intervals[i][0]<=newIntervals[1]){
 //         newIntervals[0]=Math.min(newIntervals[0],intervals[i][0]);
@@ -4509,7 +4499,6 @@
 //         i++
 //     }
 //     result.push(newIntervals)
-
 
 // checkout if we have remaining intervals and push at last to the empty array
 //     while (i < intervals.length) {
@@ -4523,4 +4512,888 @@
 // let intervals = [[1,2],[3,5],[6,7],[8,10],[12,16]]
 // let newIntervals = [4, 8];
 
-// console.log(insertNewInterval(intervals, newIntervals)); 
+// console.log(insertNewInterval(intervals, newIntervals));
+
+// Remove Element
+
+// Given an integer array nums and an integer val, remove all occurrences of val in nums in-place. The order of the elements may be changed. Then return the number of elements in nums which are not equal to val.
+
+// Consider the number of elements in nums which are not equal to val be k, to get accepted, you need to do the following things:
+
+// Change the array nums such that the first k elements of nums contain the elements which are not equal to val. The remaining elements of nums are not important as well as the size of nums.
+// Return k.
+
+// function removeElement(arr,value){
+//     let i=0,j=0;
+
+//     while(j<arr.length){
+//         if(arr[j]!==value){
+//             arr[i]=arr[j];
+//             i++;
+//         }
+//         j++;
+//     }
+//     return i;
+// }
+
+// let arr=[0,1,2,2,3,0,4,2];
+// let value=2;
+// console.log(removeElement(arr,value));
+
+//Max profit problem (single day)
+
+// Best Time to Buy and Sell Stock
+// You are given an array prices where prices[i] is the price of a given stock on the ith day.
+
+// You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.
+
+// Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
+
+// Example 1:
+
+// Input: prices = [7,1,5,3,6,4]
+// Output: 5
+// Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
+// Note that buying on day 2 and selling on day 1 is not allowed because you must buy before you sell.
+// Example 2:
+
+// Input: prices = [7,6,4,3,1]
+// Output: 0
+// Explanation: In this case, no transactions are done and the max profit = 0.
+
+// Constraints:
+
+// 1 <= prices.length <= 105
+// 0 <= prices[i] <= 104
+
+// function maxProfit(prices) {
+//     if (!prices || prices.length < 2) {
+//         return 0;
+//     }
+
+//     let minPrice = prices[0];
+//     let maxProfit = 0;
+
+//     for (let i = 1; i < prices.length; i++) {
+//         if (prices[i] < minPrice) {
+//             minPrice = prices[i];
+//         } else {
+//             maxProfit = Math.max(maxProfit, prices[i] - minPrice);
+//         }
+//     }
+
+//     return maxProfit;
+// }
+
+// // Test cases
+// const prices1 = [7, 1, 5, 3, 6, 4];
+// console.log("Maximum profit for prices1:", maxProfit(prices1)); // Output: 5
+
+// const prices2 = [7, 6, 4, 3, 1];
+// console.log("Maximum profit for prices2:", maxProfit(prices2)); // Output: 0
+
+// Best Time to Buy and Sell Stock II (Multiple Days)
+// You are given an integer array prices where prices[i] is the price of a given stock on the ith day.
+
+// On each day, you may decide to buy and/or sell the stock. You can only hold at most one share of the stock at any time. However, you can buy it then immediately sell it on the same day.
+
+// Find and return the maximum profit you can achieve.
+
+// Example 1:
+
+// Input: prices = [7,1,5,3,6,4]
+// Output: 7
+// Explanation: Buy on day 2 (price = 1) and sell on day 3 (price = 5), profit = 5-1 = 4.
+// Then buy on day 4 (price = 3) and sell on day 5 (price = 6), profit = 6-3 = 3.
+// Total profit is 4 + 3 = 7.
+// Example 2:
+
+// Input: prices = [1,2,3,4,5]
+// Output: 4
+// Explanation: Buy on day 1 (price = 1) and sell on day 5 (price = 5), profit = 5-1 = 4.
+// Total profit is 4.
+// Example 3:
+
+// Input: prices = [7,6,4,3,1]
+// Output: 0
+// Explanation: There is no way to make a positive profit, so we never buy the stock to achieve the maximum profit of 0.
+
+// function maxxprofitMultiple(arr) {
+//   let buy = arr[0];
+//   let profit = 0;
+
+//   for (let i = 1; i < arr.length; i++) {
+//     if (buy > arr[i]) buy = arr[i];
+//     else profit += arr[i] - buy;
+//     buy = arr[i];
+//   }
+//   return profit;
+// }
+
+// let arr=[1,2,3,4,5]
+// console.log(maxxprofitMultiple(arr) );
+
+// Jump Game
+// You are given an integer array nums. You are initially positioned at the array's first index, and each element in the array represents your maximum jump length at that position.
+
+// Return true if you can reach the last index, or false otherwise.
+
+ 
+
+// Example 1:
+
+// Input: nums = [2,3,1,1,4]
+// Output: true
+// Explanation: Jump 1 step from index 0 to 1, then 3 steps to the last index.
+// Example 2:
+
+// Input: nums = [3,2,1,0,4]
+// Output: false
+// Explanation: You will always arrive at index 3 no matter what. Its maximum jump length is 0, which makes it impossible to reach the last index.
+ 
+
+// Constraints:
+
+// 1 <= nums.length <= 104
+// 0 <= nums[i] <= 105
+
+// function jumpGame(arr){
+//     let start=arr[0];
+// for(let i=1;i<arr.length;i++){
+//     start--;
+//     if(start<0) return false ;
+
+//     if(i===arr.length-1) return true;
+
+//     if(start<arr[i]) start=arr[i]
+// }
+// return true
+// }
+// let arr=[3,2,1,0,4]
+// console.log(jumpGame(arr));
+
+
+
+
+// Jump Game II
+// You are given a 0-indexed array of integers nums of length n. You are initially positioned at nums[0].
+
+// Each element nums[i] represents the maximum length of a forward jump from index i. In other words, if you are at nums[i], you can jump to any nums[i + j] where:
+
+// 0 <= j <= nums[i] and
+// i + j < n
+// Return the minimum number of jumps to reach nums[n - 1]. The test cases are generated such that you can reach nums[n - 1].
+
+ 
+
+// Example 1:
+
+// Input: nums = [2,3,1,1,4]
+// Output: 2
+// Explanation: The minimum number of jumps to reach the last index is 2. Jump 1 step from index 0 to 1, then 3 steps to the last index.
+// Example 2:
+
+// Input: nums = [2,3,0,1,4]
+// Output: 2
+ 
+
+// Constraints:
+
+// 1 <= nums.length <= 104
+// 0 <= nums[i] <= 1000
+// It's guaranteed that you can reach nums[n - 1].
+
+// function minJumps(arr){
+//     let currFarthest=0,currEnd=0,jumps=0;
+
+//     for(let i=0;i<arr.length-1;i++){
+//         currFarthest=Math.max(currFarthest,i+arr[i])
+
+//         if(i===currEnd){
+//             jumps++;
+//             currEnd=currFarthest
+//         }
+//     }
+//     return jumps;
+// }
+
+// console.log(minJumps([2, 3, 1, 1, 4])); // Output: 2
+
+
+// function findLengthoflastword(str){
+   
+//     let length=0;
+//     let trimmed=str.trim();
+//     for(let i=trimmed.length-1;i>=0;i--){
+//         if(trimmed[i]==' '){
+//             break;
+//         }
+//         else{
+//             length++;
+//         }
+//     }
+//     return length;
+// }
+
+// let str='  welcome to my world  ';
+// console.log(findLengthoflastword(str));
+
+// IF MORE SPACES IN BETWEEN THE WORDS
+
+// function lastWord(str) {
+//     let splitted=str.trim().split(/\s+/);
+//     return splitted[splitted.length-1].length
+    
+// }
+
+// let str='  welcome  to   my   world   ';
+// console.log(lastWord(str));
+
+
+// Given string
+
+// Function to find the length of the last word
+// function findLengthOfLastWord(str) {
+//     let length = 0;
+//     let isWordStarted = false;
+
+//     // Iterate through the string from end to beginning
+//     for (let i = str.length - 1; i >= 0; i--) {
+//         if (str[i] !== ' ') {
+//             // If non-space character is encountered
+//             isWordStarted = true;
+//             length++; // Increment the length of the last word
+//         } else if (isWordStarted) {
+//             // If a space is encountered after the last word and flag is true
+//             break; // Exit the loop
+//         }
+//         else{
+//             continue;  // for spaces if spaces found and flag is false then continue the iteration 
+//         }
+//     }
+
+//     return length; // Return the length of the last word
+// }
+
+// // Execute the function with the given string
+// console.log(findLengthOfLastWord(str)); // Output: 5
+
+
+// function findLengthOfLastWord(str){
+//     let flag = false;
+//     let length=0;
+
+//     for(let i=str.length-1;i>=0;i--){
+//         if(str[i]!==' '){
+//             flag=true;
+//             length++
+//         }
+//         else if(flag){
+//             break;
+//         }
+//         else{
+//             continue;
+//         }
+//     }
+//     return length
+// }
+// let str = '  welcome    to    my   world  ';
+
+// console.log(findLengthOfLastWord(str)); // Output: 5
+
+//Find h-index fr given ascending sorted array
+
+// H-Index
+// Given an array of integers citations where citations[i] is the number of citations a researcher received for their ith paper, return the researcher's h-index.
+
+// According to the definition of h-index on Wikipedia: The h-index is defined as the maximum value of h such that the given researcher has published at least h papers that have each been cited at least h times.
+
+// Example 1:
+
+// Input: citations = [3,0,6,1,5]
+// Output: 3
+// Explanation: [3,0,6,1,5] means the researcher has 5 papers in total and each of them had received 3, 0, 6, 1, 5 citations respectively.
+// Since the researcher has 3 papers with at least 3 citations each and the remaining two with no more than 3 citations each, their h-index is 3.
+// Example 2:
+
+// Input: citations = [1,3,1]
+// Output: 1
+ 
+
+// Constraints:
+
+// n == citations.length
+// 1 <= n <= 5000
+// 0 <= citations[i] <= 1000
+
+// function hIndex(arr){
+//     arr.sort((a,b)=>a-b)
+//     let left=0,right=arr.length-1;
+//     let n=arr.length;
+
+//     while(left<=right){
+//         let mid=Math.floor((left+right)/2);
+//         let h=n-mid;
+
+//         if(arr[mid]===h){
+//             return h
+//         }
+//         else if(arr[mid]<h){
+//             left=mid+1
+//         }
+//         else{
+//             right=mid-1
+//         }
+//     }
+//     return n-left;
+// }
+
+// // Test case
+// const citations =[1,3,1]
+// console.log("The H-index is:", hIndex(citations)); // Output: 3
+
+// NOTE : IN THIS PROBLEM IF ARRAY IS SORTED ALREADY THEN ITS FINE , IF IT IS NOT SORTED THEN YOU NEED TO SORT THE ARRAY 
+
+
+// A word is defined as a sequence of non-space characters. The words in s will be separated by at least one space.
+
+// Return a string of the words in reverse order concatenated by a single space.
+
+// Note that s may contain leading or trailing spaces or multiple spaces between two words. The returned string should only have a single space separating the words. Do not include any extra spaces.
+
+ 
+
+// Example 1:
+
+// Input: s = "the sky is blue"
+// Output: "blue is sky the"
+// Example 2:
+
+// Input: s = "  hello world  "
+// Output: "world hello"
+// Explanation: Your reversed string should not contain leading or trailing spaces.
+// Example 3:
+
+// Input: s = "a good   example"
+// Output: "example good a"
+// Explanation: You need to reduce multiple spaces between two words to a single space in the reversed string.
+ 
+
+// Constraints:
+
+// 1 <= s.length <= 104
+// s contains English letters (upper-case and lower-case), digits, and spaces ' '.
+// There is at least one word in s.
+ 
+
+// Follow-up: If the string data type is mutable in your language, can you solve it in-place with O(1) extra space?
+
+
+
+
+
+
+
+
+
+// // function reverseWords(str){
+// //     // return strs.trim().split(" ").reverse().join(" ")
+
+    
+// //     let reversedStr = '';
+// //     let word = '';
+
+// //     for (let i = 0; i <= str.length; i++) {
+// //         if (str[i] === ' ' || i === str.length) {
+// //             reversedStr += word + ' ';
+// //             word = '';
+// //         } else {
+// //             word = str[i] + word;
+// //         }
+//     }
+
+//     return reversedStr.trim();
+
+// }
+
+// const strs= "  hello world  ";
+// console.log(reverseWords(strs));
+
+// function reverseWords(strs){
+//     let emp=[];
+//     let rev='';
+
+//     for(let i=0;i<strs.length;i++){
+//         if(strs[i]!==' '){
+//             rev+=strs[i];
+
+//         }
+//         else if(strs[i]===' ' && rev.length>0){
+//             emp.unshift(rev);
+//             rev=''
+//         }
+//     }
+//     // console.log(emp);
+//     return emp.join(' ')
+// }
+
+// const strs= '  welcome    to    my   world  ';
+// console.log(reverseWords(strs));
+
+
+// Product of Array Except Self
+// Medium
+// 21K
+// 1.2K
+// Companies
+// Given an integer array nums, return an array answer such that answer[i] is equal to the product of all the elements of nums except nums[i].
+
+// The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.
+
+// You must write an algorithm that runs in O(n) time and without using the division operation.
+
+ 
+
+// Example 1:
+
+// Input: nums = [1,2,3,4]
+// Output: [24,12,8,6]
+// Example 2:
+
+// Input: nums = [-1,1,0,-3,3]
+// Output: [0,0,9,0,0]
+ 
+
+// Constraints:
+
+// 2 <= nums.length <= 105
+// -30 <= nums[i] <= 30
+// The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.
+
+// function productArray(arr){
+//     let emp=[];
+//     let product=1;
+
+//     for(let i=0;i<arr.length;i++){
+//         product*=arr[i]
+//     }
+//     // console.log(product);
+//     for(let i=0;i<arr.length;i++){
+//         emp[i]=Math.floor(product/arr[i])
+//     }
+//     return emp
+// }
+
+// let arr= [-1,1,0,-3,3]
+// console.log(productArray(arr));   NOTE : THIS IS NOT OPTIMAL APPROACH BECAUSE IT DOESNT HANDLE ALL THE CASES 
+//ONLY FOR POSITIVE NUMBERS IT IS APPLICABLE AND FOR NEGATIVE NUMBERS IT WILL THROW AN ERROR 
+
+// function productExceptSelf(nums) {
+//     let n = nums.length;
+//     let prefix = new Array(n).fill(1);
+//     let suffix = new Array(n).fill(1);
+//     let output = new Array(n);
+
+//     for(let i = 1; i < n; i++) {
+//         prefix[i] = prefix[i - 1] * nums[i - 1];
+//     }
+
+//     for(let i = n - 2; i >= 0; i--) {
+//         suffix[i] = suffix[i + 1] * nums[i + 1];
+//     }
+
+//     for(let i = 0; i < n; i++) {
+//         output[i] = prefix[i] * suffix[i];
+//     }
+
+//     return output;
+// }
+
+// console.log(productExceptSelf([1,2,3,4])); // Output: [24,12,8,6]
+// console.log(productExceptSelf([-1,1,0,-3,3])); // Output: [0,0,9,0,0]
+
+
+// function productExceptSelf(arr){
+//     let n=arr.length;
+//     let emp=new Array(n);
+//     let prefix=new Array(n).fill(1);
+//     let suffix=new Array(n).fill(1);
+
+//     // console.log(prefix);
+
+//     for(let i=1;i<arr.length;i++){
+//         prefix[i]=prefix[i-1]*arr[i-1]
+//     }
+
+//     for(let i=arr.length-2;i>=0;i--){
+//         suffix[i]=suffix[i+1]*arr[i+1]
+//     }
+
+//     for(let i=0;i<emp.length;i++){
+//         emp[i]=prefix[i]*suffix[i]
+//     }
+
+//     return emp;
+// }
+
+// console.log(productExceptSelf([1,2,3,4])); // Output: [24,12,8,6]
+// console.log(productExceptSelf([-1,1,0,-3,3])); // Output: [0,0,9,0,0]
+
+
+// Gas station problem 
+
+// Gas Station
+// There are n gas stations along a circular route, where the amount of gas at the ith station is gas[i].
+
+// You have a car with an unlimited gas tank and it costs cost[i] of gas to travel from the ith station to its next (i + 1)th station. You begin the journey with an empty tank at one of the gas stations.
+
+// Given two integer arrays gas and cost, return the starting gas station's index if you can travel around the circuit once in the clockwise direction, otherwise return -1. If there exists a solution, it is guaranteed to be unique
+
+ 
+
+// Example 1:
+
+// Input: gas = [1,2,3,4,5], cost = [3,4,5,1,2]
+// Output: 3
+// Explanation:
+// Start at station 3 (index 3) and fill up with 4 unit of gas. Your tank = 0 + 4 = 4
+// Travel to station 4. Your tank = 4 - 1 + 5 = 8
+// Travel to station 0. Your tank = 8 - 2 + 1 = 7
+// Travel to station 1. Your tank = 7 - 3 + 2 = 6
+// Travel to station 2. Your tank = 6 - 4 + 3 = 5
+// Travel to station 3. The cost is 5. Your gas is just enough to travel back to station 3.
+// Therefore, return 3 as the starting index.
+// Example 2:
+
+// Input: gas = [2,3,4], cost = [3,4,3]
+// Output: -1
+// Explanation:
+// You can't start at station 0 or 1, as there is not enough gas to travel to the next station.
+// Let's start at station 2 and fill up with 4 unit of gas. Your tank = 0 + 4 = 4
+// Travel to station 0. Your tank = 4 - 3 + 2 = 3
+// Travel to station 1. Your tank = 3 - 3 + 3 = 3
+// You cannot travel back to station 2, as it requires 4 unit of gas but you only have 3.
+// Therefore, you can't travel around the circuit once no matter where you start.
+ 
+
+// Constraints:
+
+// n == gas.length == cost.length
+// 1 <= n <= 105
+// 0 <= gas[i], cost[i] <= 104
+
+// function gasStation(gas,costs){
+//     let totalSum=0;
+
+//     for(let i=0;i<gas.length;i++){
+//         totalSum+=gas[i]-costs[i]
+//     }
+
+//     if(totalSum<0){
+//         return -1;
+//     }
+
+//     let remaining=0;
+//     let start=0;
+
+//     for(let i=0;i<gas.length;i++){
+//         let currentGas=gas[i]+remaining;
+//         let currentCosts=costs[i];
+//         remaining=currentGas-currentCosts;
+//         if(remaining<0){
+//             remaining=0;
+//             start=i+1
+//         }
+//     }
+//     return start;
+// }
+
+// let gas = [2,3,4], cost = [3,4,3]
+
+// console.log(gasStation(gas,cost));
+
+// Container With Most Water
+// You are given an integer array height of length n. There are n vertical lines drawn such that the two endpoints of the ith line are (i, 0) and (i, height[i]).
+
+// Find two lines that together with the x-axis form a container, such that the container contains the most water.
+
+// Return the maximum amount of water a container can store.
+
+// Notice that you may not slant the container.
+
+ 
+
+// Example 1:
+
+
+// Input: height = [1,8,6,2,5,4,8,3,7]
+// Output: 49
+// Explanation: The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7]. In this case, the max area of water (blue section) the container can contain is 49.
+// Example 2:
+
+// Input: height = [1,1]
+// Output: 1
+ 
+
+// Constraints:
+
+// n == height.length
+// 2 <= n <= 105
+// 0 <= height[i] <= 104
+
+// function containerWater(heights){
+//     let left=0,right=heights.length-1;
+//     let ans=0;
+
+//     while(left<right){
+//         let width=right-left;
+//         let height=Math.min(heights[left],heights[right]);
+//         ans=Math.max(ans,width*height)
+
+//         if(heights[left]<heights[right]){
+//             left++;
+//         }
+//         else{
+//             right--
+//         }
+//     }
+  
+//     return ans
+// }
+
+//  let heights = [1,1]
+//  console.log(containerWater(heights));
+
+// Ransom Note
+// Given two strings ransomNote and magazine, return true if ransomNote can be constructed by using the letters from magazine and false otherwise.
+
+// Each letter in magazine can only be used once in ransomNote.
+
+ 
+
+// Example 1:
+
+// Input: ransomNote = "a", magazine = "b"
+// Output: false
+// Example 2:
+
+// Input: ransomNote = "aa", magazine = "ab"
+// Output: false
+// Example 3:
+
+// Input: ransomNote = "aa", magazine = "aab"
+// Output: true
+ 
+
+// Constraints:
+
+// 1 <= ransomNote.length, magazine.length <= 105
+// ransomNote and magazine consist of lowercase English letters.
+
+// function ransome(ransom,magazine){
+//     let map=new Map();
+
+//     for(let nums of magazine){
+//         if(map.has(nums)){
+//             map.set(nums,map.get(nums)+1)
+//         }
+//         else{
+//             map.set(nums,1)
+//         }
+//     }
+
+//     for(let keys of ransom){
+//         if(!map.has(keys)||map.get(keys)===0){
+//             return false;
+//         }
+//        map.set(keys, map.get(keys)-1);
+//     }
+//     return true
+// }
+
+// let  ransom = "aa", magazine = "abba";
+// console.log(ransome(ransom,magazine));
+
+
+// function isIsomorphic(s, t) {
+//     let sMap = new Map();
+//     let tMap = new Map();
+
+//     for (let i = 0; i < s.length; i++) {
+//         if (!sMap.has(s[i])) {
+//             sMap.set(s[i], t[i]);
+//         }
+//         if (!tMap.has(t[i])) {
+//             tMap.set(t[i], s[i]);
+//         }
+
+//         if (sMap.get(s[i]) !== t[i] || tMap.get(t[i]) !== s[i]) {
+//             return false;
+//         }
+//     }
+//     return true;
+// }
+
+// console.log(isIsomorphic("egg", "add"));  // Output: true
+// console.log(isIsomorphic("foo", "bar"));  // Output: false
+// console.log(isIsomorphic("paper", "title"));  // Output: true
+
+// Word Pattern
+// Given a pattern and a string s, find if s follows the same pattern.
+
+// Here follow means a full match, such that there is a bijection between a letter in pattern and a non-empty word in s.
+
+ 
+
+// Example 1:
+
+// Input: pattern = "abba", s = "dog cat cat dog"
+// Output: true
+// Example 2:
+
+// Input: pattern = "abba", s = "dog cat cat fish"
+// Output: false
+// Example 3:
+
+// Input: pattern = "aaaa", s = "dog cat cat dog"
+// Output: false
+ 
+
+
+// function wordPattern(s,t){
+
+//   let str1=s.split('');
+//   let str2=t.split(" ");
+//   let map1=new Map();
+//   let map2=new Map();
+
+//   for(let i=0;i<str1.length;i++){
+//     if(!map1.has(str1[i])){
+//         map1.set(str1[i],str2[i])
+//     }
+//     else if(map1.get(str1[i])!==str2[i]){
+//         return false
+//     }
+//     if(!map2.has(str2[i])){
+//         map2.set(str2[i],str1[i])
+//     }
+//     else if(map2.get(str2[i])!==str1[i]){
+//         return false
+//     }
+//   }
+//   return true;
+// }
+
+// let s = "abba", t = "hum durr cat hum";
+
+// console.log(wordPattern(s,t));
+
+// Happy Number
+// Write an algorithm to determine if a number n is happy.
+
+// A happy number is a number defined by the following process:
+
+// Starting with any positive integer, replace the number by the sum of the squares of its digits.
+// Repeat the process until the number equals 1 (where it will stay), or it loops endlessly in a cycle which does not include 1.
+// Those numbers for which this process ends in 1 are happy.
+// Return true if n is a happy number, and false if not.
+
+ 
+
+// Example 1:
+
+// Input: n = 19
+// Output: true
+// Explanation:
+// 12 + 92 = 82
+// 82 + 22 = 68
+// 62 + 82 = 100
+// 12 + 02 + 02 = 1
+// Example 2:
+
+// Input: n = 2
+// Output: false
+
+// // function isHappy(n){
+// //     let slow=n,fast=n;
+
+// //     do{
+// //         slow=squareSum(slow);
+// //         fast=squareSum(squareSum(fast));
+
+// //     }
+// //     while(fast!==slow)
+// //     return fast===1
+// // }
+
+// // function squareSum(n){
+// //     let sum=0;
+// //     while(n!==0){
+// //         sum+=(n%10)*(n%10);
+// //         n=parseInt(n/10)
+// //     }
+// //     return sum;
+// // }
+
+// // console.log(isHappy(19));
+
+
+//  Contains Duplicate II
+// Given an integer array nums and an integer k, return true if there are two distinct indices i and j in the array such that nums[i] == nums[j] and abs(i - j) <= k.
+
+ 
+
+// Example 1:
+
+// Input: nums = [1,2,3,1], k = 3
+// Output: true
+// Example 2:
+
+// Input: nums = [1,0,1,1], k = 1
+// Output: true
+// Example 3:
+
+// // Input: nums = [1,2,3,1,2,3], k = 2
+// // Output: false
+
+// // function containingDuplicate(arr,k){
+// //     let map=new Map();
+
+// //     for(let i=0;i<arr.length;i++){
+// //         if(map.has(arr[i])){
+// //             let j=map.get(arr[i]);
+// //             if(Math.abs(i-j) <=k){
+// //                 return true
+// //             }
+// //         }
+// //         else{
+// //             map.set(arr[i],i)
+// //         }
+// //     }
+// //     return false
+// // }
+
+// function consecutive(arr){
+//     let set=new Set(arr);
+
+//     let maxLength=0;
+
+//     for(let nums of set){
+//         if(!set.has(nums-1)){
+//             let currentNum=nums;
+//             let currentLength=1;
+
+//             while(set.has(currentNum+1)){
+//                 currentNum++;
+//                 currentLength++;
+//             }
+
+//             maxLength=Math.max(maxLength,currentLength)
+//         }
+       
+//     }
+//     return maxLength
+// }
+
+// let arr =  [0,3,7,2,5,8,4,6,0,1]
+// console.log(consecutive(arr));
